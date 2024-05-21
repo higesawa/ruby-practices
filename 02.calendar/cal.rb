@@ -19,7 +19,7 @@ puts "日 月 火 水 木 金 土"
 
 ## calendarの該当月の日数を取得
 first_day_of_month = Date.new(params["y"].to_i, params["m"].to_i)
-last_day_of_month = Date.new(params["y"].to_i, params["m"].to_i + 1) - 1
+last_day_of_month = Date.new(params["y"].to_i, params["m"].to_i, -1)
 
 # 該当月の1日の曜日に合わせてスペースをいれる
 print "   " * first_day_of_month.wday
