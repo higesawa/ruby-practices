@@ -6,10 +6,8 @@ require 'date'
 params = ARGV.getopts("m:","y:")
 
 # 引数が存在しない場合、今月・今年が指定される
-if params["m"] == nil && params["y"] == nil
-  params["m"] = Date.today.mon
-  params["y"] = Date.today.year
-end
+params["m"] = Date.today.mon if params["m"] == nil
+params["y"] = Date.today.year if params["y"] == nil
 
 # 年月の表示
 puts "      #{params["m"]}月 #{params["y"]}"
