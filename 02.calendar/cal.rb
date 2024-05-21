@@ -35,3 +35,6 @@ print "   " * first_day_of_month.wday
     print "%2d" %"#{d.day}" + " "
   end
 end
+
+# 月の最終日が土曜だった場合、空行を入れる
+puts " " if last_day_of_month.wday == 6
