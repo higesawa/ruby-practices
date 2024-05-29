@@ -15,11 +15,8 @@ last_day_of_month = Date.new(params["y"].to_i, params["m"].to_i, -1)
 print "   " * first_day_of_month.wday
 
 (first_day_of_month..last_day_of_month).each do |d|
-  if d.saturday? || d == last_day_of_month
-    puts "#{d.day}".rjust(2) + " "
-  else
-    print "#{d.day}".rjust(2) + " "
-  end
+  print "#{d.day.to_s.rjust(2)} "
+  puts if d.saturday? || d == last_day_of_month
 end
 
 puts if last_day_of_month.wday == 6
