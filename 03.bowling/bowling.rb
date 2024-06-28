@@ -12,18 +12,11 @@ def parse_frames(score)
       shots << s.to_i
     end
   end
-
   frames = shots.each_slice(2).to_a
-  frames.map! { |frame| frame == [10, 0] ? [10] : frame }
-  until frames.length == 10
-    last_frame = frames.pop
-    frames[-1] += last_frame
-  end
-  frames
 end
 
 def strike?(frame)
-  frame == [10]
+  frame[0] == 10
 end
 
 def strike_score(next_frame, next_next_frame)
@@ -35,7 +28,7 @@ def strike_score(next_frame, next_next_frame)
 end
 
 def spare?(frame)
-  frame.sum == 10 && frame.length == 2
+  frame.sum == 10 && !frame[1].zero?
 end
 
 def spare_score(next_frame)
@@ -58,6 +51,8 @@ score = ARGV[0]
 frames = parse_frames(score)
 point = 0
 frames.each_with_index do |frame, i|
+  break if i > 9
+
   point += frame_point(frames, frame, i)
 end
 puts point
