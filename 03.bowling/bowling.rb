@@ -27,11 +27,11 @@ def strike?(frame)
 end
 
 def strike_score(next_frame, next_next_frame)
-  if strike?(next_frame)
-    10 + next_frame[0] + next_next_frame[0]
-  else
-    10 + next_frame[0..1].sum
-  end
+  10 + if strike?(next_frame)
+         next_frame[0] + next_next_frame[0]
+       else
+         next_frame[0..1].sum
+       end
 end
 
 def spare?(frame)
