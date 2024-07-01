@@ -36,6 +36,8 @@ def spare_score(next_frame)
 end
 
 def frame_point(frames, frame, index)
+  return 0 if index > 9 # 最終フレームまで計算する
+
   next_frame = frames[index + 1]
   next_next_frame = frames[index + 2]
   if strike?(frame)
@@ -49,10 +51,7 @@ end
 
 score = ARGV[0]
 frames = parse_frames(score)
-point = 0
-frames.each_with_index do |frame, i|
-  break if i > 9
-
-  point += frame_point(frames, frame, i)
+point = frames.each_with_index.sum do |frame, i|
+  frame_point(frames, frame, i)
 end
 puts point
